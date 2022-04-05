@@ -16,7 +16,7 @@ public class SignInAutomation {
 
     public String getURL() throws InterruptedException {
         driver.get(url);
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         String currentUrl = driver.getCurrentUrl();
         System.out.println("\n\n\nURL is\n" + currentUrl +"\n\n\n");
         driver.close();
@@ -24,7 +24,7 @@ public class SignInAutomation {
     }
 
     public String signIn() throws InterruptedException {
-        int pause = 1000 * 4;
+        int pause = 1000 * 5;
 
         // required fields
         String nameF = "Dean";// 1 char
@@ -38,6 +38,7 @@ public class SignInAutomation {
 
         // to Home page
         driver.get(url);
+        Thread.sleep(pause/2);// wait for it...
         //driver.manage().window().maximize();
         click("//*[@id=\"header\"]/div[2]/div/div/nav/div[1]/a");// Sign in
         Thread.sleep(pause);// loading...
@@ -98,11 +99,12 @@ public class SignInAutomation {
         type1("//*[@id=\"phone\"]",phone);// Home phone
         type1("//*[@id=\"phone_mobile\"]","972"+ phone);// Mobile phone
         type1("//*[@id=\"alias\"]"," is secret");// Assign an address alias for future reference, append to placeholder
+        Thread.sleep(pause*2);// wait for it...
 
         // Register B
         click("//*[@id=\"submitAccount\"]/span");// Register
-        Thread.sleep(pause);// loading...
 
+        Thread.sleep(pause);// loading...
         String title = driver.getTitle();
         System.out.println("\n\n\nTitle is\n" + title +"\n\n\n");
         driver.close();
